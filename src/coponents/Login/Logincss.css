@@ -1,0 +1,14 @@
+.Loginbox {
+    justify-content: center;
+}
+
+.InputArea {
+    display: flex;
+    flex-direction: row;
+}
+
+.columnLogin {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
