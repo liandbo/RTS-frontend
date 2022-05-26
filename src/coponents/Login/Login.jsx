@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './Logincss.css';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../../context/authContext';
 
 const Login = () => {
@@ -35,7 +35,7 @@ const Login = () => {
                 navigate(from, {replace: true})
             }
         }).catch(error => {
-            if (error.response.status === 400 || error.response.status === 404) {
+            if (error.response.status === 400 || error.response.status === 404 || error.response.status === 401) {
                 alert(error.response.data.message);
             }
         })

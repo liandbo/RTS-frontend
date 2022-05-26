@@ -10,6 +10,7 @@ import SecretaryHome from './coponents/Secretary/SecretaryHome';
 import DTDTHome from './coponents/DTDT/DTDTHome';
 import QLKHHome from './coponents/QLKH/QLKHHome';
 import HCTHHome from './coponents/HCTH/HCTHHome';
+import Student_ticket_view from './coponents/Student/Student_ticket_view';
 
 function App() {
 
@@ -18,17 +19,43 @@ function App() {
     const roleCheck = (role) => {
         switch (String(role)) {
             case process.env.REACT_APP_ROLE_STUDENT:
-                return <StudentHome />
+                return (
+                    <>
+                        <Route path="/" element={<StudentHome />} />
+                        <Route path="/ticket/:ticketId" element={<Student_ticket_view />} />
+                    </>
+                )
             case process.env.REACT_APP_ROLE_SECRETARY:
-                return <SecretaryHome />
+                return (
+                    <>
+                        <Route path="/" element={<SecretaryHome />} />
+                    </>
+                )
             case process.env.REACT_APP_ROLE_DTDT:
-                return <DTDTHome />
+                return (
+                    <>
+                        <Route path="/" element={<DTDTHome />} />
+                    </>
+                )
             case process.env.REACT_APP_ROLE_QLKH:
-                return <QLKHHome />
+                return (
+                    <>
+                        <Route path="/" element={<QLKHHome />} />
+                    </>
+                )
+
             case process.env.REACT_APP_ROLE_HCTH:
-                return <HCTHHome />
+                return (
+                    <>
+                        <Route path="/" element={<HCTHHome />} />
+                    </>
+                )
             default:
-                return <Error />
+                return (
+                    <>
+                        <Route path="/" element={<Error />} />
+                    </>
+                )
         }
     }
 
@@ -37,7 +64,7 @@ function App() {
             <Routes>
                 <Route path="/Login" element={<Login />} />
                 <Route element={<AuthCheck />}>
-                    <Route path="/" element={roleCheck(auth.Role)} />
+                    {roleCheck(auth.Role)}
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>
