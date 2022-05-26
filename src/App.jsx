@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Login from './coponents/Login/Login';
