@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import './Logincss.css';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -14,7 +14,7 @@ const Login = () => {
 
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const isLoading = useRef(false);
     const [errorMessage, setErrorMessage] = useState(' ');
 
     const handleLogin = (id, passwordValue) => {
@@ -40,13 +40,15 @@ const Login = () => {
             if (error.response.status === 400 || error.response.status === 404 || error.response.status === 401) {
                 setErrorMessage("Login failed: " + error.response.data.message);
             }
-        });
-        setIsLoading(false);
+        }).then(() => {
+            isLoading.current = false;
+        })
     };
 
     const onSubmitClick = () => {
-        if (!isLoading) {
-            setIsLoading(true);
+        if (!isLoading.current) {
+            console.log("run");
+            isLoading.current = true;
             handleLogin(userId, password);
         }
     };
