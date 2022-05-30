@@ -14,6 +14,8 @@ const Login = () => {
 
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(' ');
 
     const handleLogin = (id, passwordValue) => {
         axios({
@@ -30,20 +32,24 @@ const Login = () => {
                 UserName: response.data.data.userName,
                 IDnumber: response.data.data.IDnumber,
                 Department: response.data.data.Department
-            })
+            });
             if (response.status === 200) {
-                navigate(from, { replace: true })
+                navigate(from, { replace: true });
             }
         }).catch(error => {
             if (error.response.status === 400 || error.response.status === 404 || error.response.status === 401) {
-                alert(error.response.data.message);
+                setErrorMessage("Login failed: " + error.response.data.message);
             }
-        })
-    }
+        });
+        setIsLoading(false);
+    };
 
     const onSubmitClick = () => {
-        handleLogin(userId, password)
-    }
+        if (!isLoading) {
+            setIsLoading(true);
+            handleLogin(userId, password);
+        }
+    };
 
     return (
         <div className="login-page">
@@ -53,7 +59,10 @@ const Login = () => {
                         <span className="text-label">Tài khoản:</span>
                         <input
                             type="text"
-                            onChange={e => setUserId(e.target.value)}
+                            onChange={e => {
+                                setUserId(e.target.value);
+                                setErrorMessage(' ');
+                            }}
                             className="text-box"
                             value={userId}
                             onKeyDown={e => e.key === 'Enter' && onSubmitClick()}
@@ -63,7 +72,10 @@ const Login = () => {
                         <span className="text-label">Mật khẩu:</span>
                         <input
                             type="password"
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={e => {
+                                setPassword(e.target.value);
+                                setErrorMessage(' ');
+                            }}
                             className="text-box"
                             value={password}
                             onKeyDown={e => e.key === 'Enter' && onSubmitClick()}
@@ -71,6 +83,7 @@ const Login = () => {
                     </div>
                 </div>
                 <button className='login-button' type="button" onClick={onSubmitClick}>Đăng nhập</button>
+                <span className='error-message'>{errorMessage}</span>
             </div>
         </div>
     );

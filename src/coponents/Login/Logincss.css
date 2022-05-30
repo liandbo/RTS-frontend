@@ -10,7 +10,7 @@
     border: none;
     width: 20%;
     border-radius: 15px;
-    padding: 50px 80px;
+    padding: 70px 80px 50px;
     background-color: white;
     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
 }
@@ -38,6 +38,7 @@
     box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.2);
     cursor: pointer;
     background-color: rgb(232, 232, 232);
+    margin-bottom: 15px;
 }
 
 .login-button:hover {
@@ -56,4 +57,10 @@
 .text-label {
     margin-bottom: 5px;
     user-select: none;
+}
+
+.error-message {
+    color: red;
+    display: block;
+    height: 20px;
 }
