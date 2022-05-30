@@ -32,7 +32,7 @@ const Login = () => {
                 Department: response.data.data.Department
             })
             if (response.status === 200) {
-                navigate(from, {replace: true})
+                navigate(from, { replace: true })
             }
         }).catch(error => {
             if (error.response.status === 400 || error.response.status === 404 || error.response.status === 401) {
@@ -46,28 +46,32 @@ const Login = () => {
     }
 
     return (
-        <div className="Loginbox">
-            <div className="InputArea">
-                <div className="columnLogin">
-                    <span>UserID</span>
-                    <span>Password</span>
+        <div className="login-page">
+            <div className="login-box">
+                <div className="input-area">
+                    <div className="column-login">
+                        <span className="text-label">Tài khoản:</span>
+                        <input
+                            type="text"
+                            onChange={e => setUserId(e.target.value)}
+                            className="text-box"
+                            value={userId}
+                            onKeyDown={e => e.key === 'Enter' && onSubmitClick()}
+                        />
+                    </div>
+                    <div className="column-login">
+                        <span className="text-label">Mật khẩu:</span>
+                        <input
+                            type="password"
+                            onChange={e => setPassword(e.target.value)}
+                            className="text-box"
+                            value={password}
+                            onKeyDown={e => e.key === 'Enter' && onSubmitClick()}
+                        />
+                    </div>
                 </div>
-                <div className="columnLogin">
-                    <input
-                        type="text"
-                        onChange={e => setUserId(e.target.value)}
-                        value={userId}
-                        onKeyDown={e => e.key === 'Enter' && onSubmitClick()}
-                    />
-                    <input
-                        type="password"
-                        onChange={e => setPassword(e.target.value)}
-                        value={password}
-                        onKeyDown={e => e.key === 'Enter' && onSubmitClick()}
-                    />
-                </div>
+                <button className='login-button' type="button" onClick={onSubmitClick}>Đăng nhập</button>
             </div>
-            <button type="button" onClick={onSubmitClick}>Submit</button>
         </div>
     );
 };
