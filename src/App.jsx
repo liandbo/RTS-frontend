@@ -12,6 +12,7 @@ import DTDTHome from './coponents/DTDT/DTDTHome';
 import QLKHHome from './coponents/QLKH/QLKHHome';
 import HCTHHome from './coponents/HCTH/HCTHHome';
 import Student_ticket_view from './coponents/Student/Student_ticket_view';
+import Header from './coponents/utils/Header';
 
 function App() {
 
@@ -62,13 +63,21 @@ function App() {
 
     return (
         <div className='Container'>
-            <Routes>
-                <Route path="/Login" element={<Login />} />
-                <Route element={<AuthCheck />}>
-                    {roleCheck(auth.Role)}
-                </Route>
-                <Route path="*" element={<Error />} />
-            </Routes>
+            <div className='header-area'>
+                <Routes>
+                    <Route path="/Login" />
+                    <Route path="*" element={<Header />} />
+                </Routes>         
+            </div>
+            <div className='body-area'>
+                <Routes>
+                    <Route path="/Login" element={<Login />} />
+                    <Route element={<AuthCheck />}>
+                        {roleCheck(auth.Role)}
+                    </Route>
+                    <Route path="*" element={<Error />} />
+                </Routes>
+            </div>
         </div>
     );
 };

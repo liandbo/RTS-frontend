@@ -5,7 +5,7 @@ import AuthContext from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Student_createTicket from './Student_createTicket';
-import '../../App.css'
+import './Student.css';
 
 const StudentHome = () => {
 
@@ -34,7 +34,7 @@ const StudentHome = () => {
 
     useEffect(() => {
         getStudentTicketList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const toTicketPage = (id) => {
@@ -59,8 +59,15 @@ const StudentHome = () => {
     }
 
     return (
-        <div>
-            <button onClick={openCreateTicket}>Tạo request</button>
+        <div className="student-container">
+            <div>
+                <button
+                    onClick={openCreateTicket}
+                    className='create-request-btn'
+                >
+                    Tạo request
+                </button>
+            </div>
             {ticketList.map(ticket => {
                 return (
                     <div key={ticket} className="ticketGroup">
@@ -69,13 +76,13 @@ const StudentHome = () => {
                     </div>
                 )
             })}
-            <Modal 
+            <Modal
                 isOpen={popupIsOpen}
                 onRequestClose={closeCreateTicket}
                 style={modalStyle}
                 ariaHideApp={false}
             >
-                <Student_createTicket refreshTrigger={refresh}/>
+                <Student_createTicket refreshTrigger={refresh} />
             </Modal>
         </div>
     );
