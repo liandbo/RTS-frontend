@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-pascal-case */
-import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
