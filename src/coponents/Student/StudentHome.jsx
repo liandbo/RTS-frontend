@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Student_createTicket from './Student_createTicket';
 import './Student.css';
+import { getStudentTicketListApi } from '../../api/api';
 
 const StudentHome = () => {
 
@@ -17,13 +18,7 @@ const StudentHome = () => {
     const [popupIsOpen, setPopupIsOpen] = useState(false);
 
     const getStudentTicketList = async () => {
-        const list = await axios({
-            method: 'GET',
-            url: '/api/v1/ticket/getStudentTicketList',
-            headers: {
-                'Authorization': `Bearer ${auth.Token}`
-            },
-        });
+        const list = await getStudentTicketListApi(auth.Token)
         setTicketList(list.data.data.ticketList.reverse());
     };
 
@@ -70,7 +65,7 @@ const StudentHome = () => {
             </div>
             {ticketList.map(ticket => {
                 return (
-                    <div key={ticket} className="ticketGroup">
+                    <div key={ticket} className="ticket-group">
                         <p key={ticket.Name}>{ticket.Name}</p>
                         <button key={ticket._id} onClick={() => toTicketPage(ticket._id)} >Chi tiết</button>
                     </div>

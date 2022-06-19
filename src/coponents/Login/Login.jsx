@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef } from 'react';
 import './Logincss.css';
-import axios from 'axios';
+import { LoginApi } from '../../api/api'
 import { useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../../context/authContext';
 
@@ -17,37 +17,29 @@ const Login = () => {
     const isLoading = useRef(false);
     const [errorMessage, setErrorMessage] = useState(' ');
 
-    const handleLogin = (id, passwordValue) => {
-        axios({
-            method: 'POST',
-            url: '/api/v1/auth/login',
-            data: {
-                IDnumber: id,
-                Password: passwordValue
-            }
-        }).then((response) => {
-            setAuth({
-                Token: response.data.data.token,
-                Role: response.data.data.Role,
-                UserName: response.data.data.userName,
-                IDnumber: response.data.data.IDnumber,
-                Department: response.data.data.Department
-            });
+    const handleLogin = async (id, passwordValue) => {
+        try {
+            const response = await LoginApi(id,passwordValue)
             if (response.status === 200) {
+                setAuth({
+                    Token: response.data.data.token,
+                    Role: response.data.data.Role,
+                    UserName: response.data.data.userName,
+                    IDnumber: response.data.data.IDnumber,
+                    Department: response.data.data.Department
+                });
                 navigate(from, { replace: true });
             }
-        }).catch(error => {
+        } catch (error) {
             if (error.response.status === 400 || error.response.status === 404 || error.response.status === 401) {
                 setErrorMessage("Login failed: " + error.response.data.message);
+                isLoading.current = false;
             }
-        }).then(() => {
-            isLoading.current = false;
-        })
+        }
     };
 
     const onSubmitClick = () => {
         if (!isLoading.current) {
-            console.log("run");
             isLoading.current = true;
             handleLogin(userId, password);
         }

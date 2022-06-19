@@ -65,13 +65,13 @@ function App() {
         <div className='Container'>
             <div className='header-area'>
                 <Routes>
-                    <Route path="/Login" />
+                    <Route path="/login" element={<div />}/>
                     <Route path="*" element={<Header />} />
                 </Routes>         
             </div>
             <div className='body-area'>
                 <Routes>
-                    <Route path="/Login" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
                     <Route element={<AuthCheck />}>
                         {roleCheck(auth.Role)}
                     </Route>
