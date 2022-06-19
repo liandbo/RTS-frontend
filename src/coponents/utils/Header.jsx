@@ -2,11 +2,21 @@ import React from 'react';
 import './Util.css';
 
 const header = () => {
-  return (
-      <div className='header-field'>
-        <button className='log-out-btn'>Log out</button>
-      </div>
-  );
+
+    const onLogOutClick = () => {
+        
+    };
+
+    return (
+        <div className='header-field'>
+            <button
+                className='log-out-btn'
+                onClick={onLogOutClick}
+            >
+                Đăng xuất
+            </button>
+        </div>
+    );
 };
 
 export default header;
