@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Util.css';
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/authContext';
 
-const header = () => {
+const Header = () => {
+    const navigate = useNavigate();
+
+    const { setAuth } = useContext(AuthContext);
 
     const onLogOutClick = () => {
-        
+        setAuth({
+            Token: '',
+            Role: -1,
+            UserName: '',
+            IDnumber: '',
+            Department: ''
+        });
+        navigate("/login", { replace: true });
     };
 
     return (
@@ -19,4 +31,4 @@ const header = () => {
     );
 };
 
-export default header;
+export default Header;
