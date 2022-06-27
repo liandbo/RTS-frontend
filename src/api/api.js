@@ -22,6 +22,16 @@ export const getStudentTicketListApi = async (token) => {
     });
     return list;
 };
+export const getSecretaryTicketListApi = async (token) => {
+    const list = await axios({
+        method: 'GET',
+        url: '/api/v1/ticket/getSecretaryTicketList',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+    });
+    return list;
+};
 
 export const createTicketApi = async (token) => {
 

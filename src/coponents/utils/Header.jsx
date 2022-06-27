@@ -6,7 +6,7 @@ import AuthContext from '../../context/authContext';
 const Header = () => {
     const navigate = useNavigate();
 
-    const { setAuth } = useContext(AuthContext);
+    const { auth, setAuth } = useContext(AuthContext);
 
     const onLogOutClick = () => {
         setAuth({
@@ -27,6 +27,7 @@ const Header = () => {
             >
                 Đăng xuất
             </button>
+            <span>Xin chào {auth.UserName}</span>
         </div>
     );
 };

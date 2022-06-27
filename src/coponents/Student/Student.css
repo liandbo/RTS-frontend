@@ -1,14 +1,24 @@
 .student-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-  margin: 0 10px;
+  align-items: center;
 }
 
-.ticket-group {
+.content-wrapper {
+  width: 98%;
+}
+
+.ticket-wrapper {
+  width: 96%;
+
   border: 1px solid black;
-  margin: 10px 0;
+  border-radius: 5px;;
+
+  padding: 30px 15px;
+  margin-bottom: 10px;
+
+  display: flex;
 }
 
 .ReactModal__Overlay {
@@ -35,7 +45,7 @@
   color: #FFFFFF;
   cursor: pointer;
   flex: 0 0 auto;
-  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.5rem;
@@ -44,12 +54,14 @@
   text-decoration: none #6B7280 solid;
   text-decoration-thickness: auto;
   transition-duration: .2s;
-  transition-property: background-color,border-color,color,fill,stroke;
+  transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   width: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .create-request-btn:hover {
@@ -60,4 +72,47 @@
   box-shadow: none;
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.ticket-name-area {
+  width: 90%;
+  display: flex;
+  padding-left: 20px;
+}
+
+.ticket-detail-btn-area {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  line-height: 20px;
+
+  border-radius: 6px;
+  border: none;
+
+  background: #6E6D70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.detail-btn:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+.ticket-name {
+  font-family: "Serif fonts";
+  font-size: 18px;
+  font-weight: 500;
 }

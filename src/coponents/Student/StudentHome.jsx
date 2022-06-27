@@ -54,22 +54,30 @@ const StudentHome = () => {
 
     return (
         <div className="student-container">
-            <div>
-                <button
-                    onClick={openCreateTicket}
-                    className='create-request-btn'
-                >
-                    Tạo request
-                </button>
+            <div className="content-wrapper">
+                <div>
+                    <button
+                        onClick={openCreateTicket}
+                        className='create-request-btn'
+                    >
+                        Tạo request
+                    </button>
+                </div>
+                {ticketList.map(ticket => {
+                    return (
+                        <div key={ticket} className="ticket-wrapper">
+                            <span key={ticket.Name} className="ticket-name">{ticket.Name}</span>
+                            <button
+                                key={ticket._id}
+                                onClick={() => toTicketPage(ticket._id)}
+                                className="detail-btn"
+                            >
+                                Chi tiết
+                            </button>
+                        </div>
+                    )
+                })}
             </div>
-            {ticketList.map(ticket => {
-                return (
-                    <div key={ticket} className="ticket-group">
-                        <p key={ticket.Name}>{ticket.Name}</p>
-                        <button key={ticket._id} onClick={() => toTicketPage(ticket._id)} >Chi tiết</button>
-                    </div>
-                )
-            })}
             <Modal
                 isOpen={popupIsOpen}
                 onRequestClose={closeCreateTicket}

@@ -13,6 +13,7 @@ import QLKHHome from './coponents/QLKH/QLKHHome';
 import HCTHHome from './coponents/HCTH/HCTHHome';
 import Student_ticket_view from './coponents/Student/Student_ticket_view';
 import Header from './coponents/utils/Header';
+import SecretaryTicketDetail from './coponents/Secretary/SecretaryTicketDetail';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
                 return (
                     <>
                         <Route path="/" element={<SecretaryHome />} />
+                        <Route path="/ticket/:ticketId" element={<SecretaryTicketDetail />} />
                     </>
                 )
             case process.env.REACT_APP_ROLE_DTDT:
