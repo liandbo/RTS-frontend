@@ -31,25 +31,27 @@ const SecretaryHome = () => {
         <div className="big-container">
             <div className="content-wrapper">
                 <h1 className="header">Công việc ngày hôm nay</h1>
-                {ticketList.map((ticket, key) => {
-                    return (
-                        <div className='ticket-wrapper'>
-                            <span
-                                key={ticket.Name}
-                                className='ticket-name'
-                            >
-                                {ticket.Name}
-                            </span>
-                            <button
-                                className="detail-btn"
-                                key={ticket._id}
-                                onClick={() => toTicketPage(ticket._id)}
-                            >
-                                Chi Tiết
-                            </button>
-                        </div>
-                    )
-                })}
+                <div className='ticket-list'>
+                    {ticketList.map((ticket, key) => {
+                        return (
+                            <div className='ticket-wrapper'>
+                                <span
+                                    key={ticket.Name}
+                                    className='ticket-name'
+                                >
+                                    {ticket.Name}
+                                </span>
+                                <button
+                                    className="detail-btn"
+                                    key={ticket._id}
+                                    onClick={() => toTicketPage(ticket._id)}
+                                >
+                                    Chi Tiết
+                                </button>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

@@ -63,20 +63,22 @@ const StudentHome = () => {
                         Tạo request
                     </button>
                 </div>
-                {ticketList.map(ticket => {
-                    return (
-                        <div key={ticket} className="ticket-wrapper">
-                            <span key={ticket.Name} className="ticket-name">{ticket.Name}</span>
-                            <button
-                                key={ticket._id}
-                                onClick={() => toTicketPage(ticket._id)}
-                                className="detail-btn"
-                            >
-                                Chi tiết
-                            </button>
-                        </div>
-                    )
-                })}
+                <div className='ticket-list'>
+                    {ticketList.map(ticket => {
+                        return (
+                            <div key={ticket._id+1} className="ticket-wrapper">
+                                <span key={ticket.Name} className="ticket-name">{ticket.Name}</span>
+                                <button
+                                    key={ticket._id}
+                                    onClick={() => toTicketPage(ticket._id)}
+                                    className="detail-btn"
+                                >
+                                    Chi tiết
+                                </button>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
             <Modal
                 isOpen={popupIsOpen}
